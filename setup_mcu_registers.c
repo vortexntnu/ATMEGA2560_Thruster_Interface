@@ -2,6 +2,7 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
+#define NUM_THRUSTERS 8
 
 /* Counters. Write the thrust values to these registers                   */
 #define THR0 OCR3A                /* Counter THR0                         */
@@ -296,6 +297,20 @@ void set_led(int LED_idx, int value){
   }
 }
 
+/**
+ * @brief Execute the arm-sequence for the thrusters.
+ * For the T200, this is one second of us = 1500.
+*/
+void arm_thrusters() {
+  for(int i = 0; i < NUM_THRUSTERS; i++) {
+    write_thrust(i, 1900);
+  }
+  _delay_ms(1000);
+
+  for(int i = 0; i < NUM_THRUSTERS; i++) {
+    write_thrust(i, 1500);
+  }
+}
 
 
 /**
