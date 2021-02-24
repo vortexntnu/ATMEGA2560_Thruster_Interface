@@ -10,15 +10,22 @@ Dependencies:
 - AVR-GCC
 - AVRDUDE
 ---
-To compile:
+Compile:
 ```
-$ cd ~/thruster_embedded
+$ cd ~/ATMEGA2560_THR_INF_Firmware
 $ make
 ```
 
-To flash:
+Flash using an arduino as a programmer:
 ```
-$ cd ~/thruster_embedded
+$ cd ~/ATMEGA2560_THR_INF_Firmware
 $ make
-$ make install
+$ make flash
+```
+
+Flash using Xavier:
+```
+$ cd ~/ATMEGA2560_THR_INF_Firmware
+$ make
+$ make xflash
 ```
