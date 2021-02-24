@@ -1,4 +1,4 @@
-# ATMEGA2560_THR_INF_Firmware
+# ATMEGA2560_Thruster_Interface
 
 Embedded codebase for the ATMEGA2560 MCU responsible for interfacing with the ESCs/Thrusters on VortexNTNU 'Gladlaks' AUV.
 
@@ -12,20 +12,20 @@ Dependencies:
 ---
 Compile:
 ```
-$ cd ~/ATMEGA2560_THR_INF_Firmware
+$ cd ~/ATMEGA2560_Thruster_Interface
 $ make
 ```
 
 Flash using an arduino as a programmer:
 ```
-$ cd ~/ATMEGA2560_THR_INF_Firmware
+$ cd ~/ATMEGA2560_Thruster_Interface
 $ make
 $ make flash
 ```
 
 Flash using Xavier:
 ```
-$ cd ~/ATMEGA2560_THR_INF_Firmware
+$ cd ~/ATMEGA2560_Thruster_Interface
 $ make
 $ make xflash
 ```
