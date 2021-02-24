@@ -18,7 +18,7 @@
 PRJ = main
 
 # avr mcu
-MCU = m2560
+MCU = atmega2560
 
 # mcu clock frequency
 CLK = 16000000UL

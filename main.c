@@ -78,8 +78,5 @@ void arming_check()
 
 void set_thrusters()
 {
-	for (int i = 0; i < NUM_THRUSTERS; i++)
-	{
-		set_thrust(i, recv_array[i]);
-	}
+	for (int i = 0; i < NUM_THRUSTERS; i++) set_thrust(i, recv_array[i]);
 }
