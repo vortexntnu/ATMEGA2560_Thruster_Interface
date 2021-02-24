@@ -72,6 +72,9 @@ test:
 flash: all
 	$(AVRDUDE) -U flash:w:$(PRJ).hex:i
 
+# flash program to MCU directly from Xavier
+xflash: all
+	sudo avrdude -c linuxspi -p m2560 -P /dev/spidev0.0 -U flash:w:./$(PRJ).hex
 # write fuses to mcu
 fuse:
 	$(AVRDUDE) -U lfuse:w:$(LFU):m -U hfuse:w:$(HFU):m -U efuse:w:$(EFU):m
