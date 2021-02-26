@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-uint8_t clamp(uint8_t Value, uint8_t Min, uint8_t Max)
+uint8_t clamp(uint8_t value, uint8_t min, uint8_t max)
 {
-  return (Value < Min)? Min : (Value > Max)? Max : Value;
+  return (value < min)? min : (value > max)? max : value;
 }

@@ -4,9 +4,6 @@
 #include "Thrusters.h"
 #include "Init.h"
 
-/**
- * @brief Initialize stuff
- */
 void initialization_sequence(){
   /* Init LED */
   initialize_leds();
@@ -18,7 +15,7 @@ void initialization_sequence(){
   SREG = (1 << 7);
 
   /* Prearm thrusters */
-  prearm_thruster_flood();
+  prearm_thrusters();
 
   // init I2C
   I2C_init(I2C_ADDR);

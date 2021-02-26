@@ -1,4 +1,4 @@
-# Name: Makefile
+# Name: ATMEGA2560_Thruster_Interface
 # Author: Vortex NTNU (H. Eiring, I. E. Høivik, Ø. Solbø, B. Visockis)
 # License: MIT
 # Copyright: 2021 Vortex NTNU

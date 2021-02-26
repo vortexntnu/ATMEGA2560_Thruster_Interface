@@ -57,6 +57,7 @@ ISR(TWI_vect)
 		TWCR = (1 << TWIE) | (1 << TWINT) | (1 << TWEA) | (1 << TWEN);
 		break;
 	default:
+		// Keep the register bits enabled on default.
 		TWCR = (1 << TWIE) | (1 << TWINT) | (1 << TWEA) | (1 << TWEN);
 		break;
 	}

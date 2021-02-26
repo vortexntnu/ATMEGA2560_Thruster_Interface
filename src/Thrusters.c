@@ -8,24 +8,6 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
-/**
- * @brief This function initializes the pwm
- * 
- * @warning Must be enabled before the thrusters
- */
-/**
- * @brief Prototype to higher lever code to set register-values
- * 
- * @warning This code is only a prototype. It must be specified later
- * where this should be done, as the MCU can only handle 8 bits of code
- * 
- * @param thrust_idx Idx describing what thruster we would like to
- * write the command to. It is assumed that @p thrust_idx \in [0, 7]
- * 
- * @param thrust_val Value to be written to the thruster. It is assumed
- * that @p thrust_val \in [1100, 1900]. If the value is outside of this
- * range, the thruster is set to idle 
- */
 
 void initialize_pwm()
 {
@@ -116,7 +98,7 @@ void set_thrust_all(uint8_t thrust)
     for (uint8_t i = 0; i < NUM_THRUSTERS; i++) set_thrust(i, thrust);
 }
 
-void prearm_thruster_flood()
+void prearm_thrusters()
 {
 	/* Turning LED D3 high and LED D2 low */
 	set_led_all(LED_ON);
@@ -128,15 +110,6 @@ void prearm_thruster_flood()
 	_delay_ms(100);
 }
 
-/**
- * @brief Function to initialize the thrusters to IDLE
- * 
- * @warning Must be enabled after the pwm
- * 
- * @warning The function assumes that the LED is initialized
- * 
- * @warning Must be set in at least a couple of seconds
- */
 void arm_thrusters()
 {
 	/* Turning LED D3 high and LED D2 low */

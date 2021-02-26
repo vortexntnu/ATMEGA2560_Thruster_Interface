@@ -1,11 +1,9 @@
-#pragma once
-
 #ifndef MAP2560_H
 #define MAP2560_H
 
 #include <avr/io.h>
 
-/* ATMEGA2560 I2C Address */
+/* ATMEGA2560 I2C Address. */
 #define I2C_ADDR 0x8
 
 /* Number of thrusters */
@@ -39,18 +37,5 @@
 #define LED_D3 1	   /* Idx of LED D3 on LED_PORT            */
 #define LED_OFF 0	   /* Turn off the LED                     */
 #define LED_ON 1	   /* Turn on the LED                      */
-
-// void initialize_spi()
-// {
-// 	// Clear port
-// 	DDRB = 0;
-
-// 	// Set MISO as output, all others input
-// 	//DDRB |= (1 << MISO);
-
-// 	// Enable SPI as slave
-// 	SPCR = (1 << SPE);
-// 	SPCR &= !(1 << MSTR);
-//}
 
 #endif /* MAP2560_H */
