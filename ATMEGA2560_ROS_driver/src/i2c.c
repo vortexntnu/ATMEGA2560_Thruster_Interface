@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <arpa/inet.h>
-#include "mcu_interface_new/i2c.h"
+#include "ATMEGA2560_ros_driver/i2c.h"
 
 
 /* I2C default delay */

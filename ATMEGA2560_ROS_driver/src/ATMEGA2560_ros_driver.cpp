@@ -1,10 +1,10 @@
-#include "thruster_interface/thruster_interface.h"
+#include "ATMEGA2560_ros_driver/ATMEGA2560_ros_driver.h"
 
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include "thruster_interface/i2c.h"
-#include "thruster_interface/interp.h"
+#include "ATMEGA2560_ros_driver/i2c.h"
+#include "ATMEGA2560_ros_driver/interp.h"
 
 #include <time.h>
 #include <stdlib.h>

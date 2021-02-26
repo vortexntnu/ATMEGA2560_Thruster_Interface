@@ -196,7 +196,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_mcu_interface_new.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_ATMEGA2560_ros_driver.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
@@ -204,6 +204,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(mcu_interface src/mcu_interface.cpp src/i2c.c src/interp.cpp)
-target_link_libraries(mcu_interface ${catkin_LIBRARIES})
-add_dependencies(mcu_interface ${catkin_EXPORTED_TARGETS})
+add_executable(ATMEGA2560_ros_driver src/ATMEGA2560_ros_driver.cpp src/i2c.c src/interp.cpp)
+target_link_libraries(ATMEGA2560_ros_driver ${catkin_LIBRARIES})
+add_dependencies(ATMEGA2560_ros_driver ${catkin_EXPORTED_TARGETS})
