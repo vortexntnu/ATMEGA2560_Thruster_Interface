@@ -52,7 +52,9 @@ void I2C_received(uint8_t received_byte)
 	}
 	else if (received_byte == THRUST_MESSAGE_END) {
 		set_thrusters(recv_array);
-		memset(recv_array, 0, sizeof(recv_array));	// set all elements to zero
+		for (i=0; i<NUM_THRUSTERS; i++) {
+			recv_array[i] = 0;
+		}
 		received_bytes_counter = 0;
 		recv_mode = false;
 	} 
