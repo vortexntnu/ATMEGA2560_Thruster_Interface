@@ -46,7 +46,7 @@ void MCU_Interface::thruster_forces_cb(const vortex_msgs::ThrusterForces &msg) {
     std::vector<double> microseconds;
 
     for(int i = 0; i < num_thrusters; i++) {
-        microseconds.push_back(thrust_to_microseconds(thrust[i]);
+        microseconds.push_back(thrust_to_microseconds(thrust[i]));
     }
 
     transfer_to_mcu(microseconds);
