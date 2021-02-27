@@ -15,7 +15,7 @@ MCU_Interface::MCU_Interface ():loop_rate(10){
 
     if (!nh.getParam("/propulsion/thrusters/num", num_thrusters)) {
         ROS_WARN("Could not get parameter '/propulsion/thrusters/num', using default.");
-        num_thrusters = 8;
+        num_thrusters = 8 + 2;
     }
 
     std::vector<double> default_vec(num_thrusters, 0.0);
@@ -120,24 +120,31 @@ void MCU_Interface::i2c_init(int MCU_addr) {
     MCU_Interface::device.iaddr_bytes = 0; /* Set this to zero, and using i2c_ioctl_xxxx API will ignore chip internal address */
 }
 
-void MCU_Interface::transfer_to_mcu(const std::vector<double> pwm) {
+void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
 // To compile and run all files:
 // cc -c ./i2c_test.c && cc ./i2c.o ./i2c_test.o -o main && ./main
 
-    std::vector<int> pwm_int_vec(pwm.begin(), pwm.end());
-    
-    int pwm_arr[num_thrusters];
-    std::copy(pwm_int_vec.begin(), pwm_int_vec.end(), pwm_arr);
-
-    const I2CDevice dev_1 = MCU_Interface::device;
-
     char num_str[num_thrusters];
     for (int i = 0; i < num_thrusters; i++) {
-        uint8_t tmp_int8 = 0.128 * pwm_arr[i] - 1;
-        num_str[i] = tmp_int8;
+        else if (i == 0) {
+            num_str[i] = 30;
+            continue;
+        }
+
+        else if (i == (num_thrusters - 1)) {
+            num_str[i] = 40;
+            continue;
+        }
+
+        else {
+            uint8_t tmp_int8 = 0.128 * pwm[i] - 1;
+            num_str[i] = tmp_int8;
+        }
+
+
     }
 
-    if (i2c_ioctl_write(&dev_1, 0x0, num_str, strlen(num_str)) != strlen(num_str))
+    if (i2c_ioctl_write(&device, 0x0, num_str, strlen(num_str)) != strlen(num_str))
     {
         /* Error process */
     }
