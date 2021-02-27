@@ -15,13 +15,15 @@
 volatile char data;
 volatile uint8_t recv_array[NUM_THRUSTERS];
 
-uint8_t num_received_bytes = 0;
+uint8_t received_bytes_counter = 0;
 uint16_t arming_counter = 0;
 
 const uint8_t arming_array[NUM_THRUSTERS] = {ARM_UINT8};
 bool is_armed = 0;
 
-void I2C_received(uint8_t received_data);
+bool recv_mode = false;
+
+void I2C_received(uint8_t received_byte);
 void I2C_requested();
 
 bool arming_check();
@@ -38,16 +40,25 @@ int main()
 	while (1);
 }
 
-void I2C_received(uint8_t received_data)
+void I2C_received(uint8_t received_byte)
 {
-	recv_array[num_received_bytes] = received_data;
-	num_received_bytes++;
-
-	if (num_received_bytes == NUM_THRUSTERS)
-	{
-		if (arming_check())
-			set_thrusters();
-		num_received_bytes = 0;
+	if (!is_armed) {
+		arming_check();
+	} 
+	else if (received_byte == THRUST_MESSAGE_INIT) {
+		recv_mode = true;
+	}
+	else if (received_byte == THRUST_MESSAGE_END) {
+		set_thrusters(recv_array);
+		memset(recv_array, 0, sizeof(recv_array));	// set all elements to zero
+		received_bytes_counter = 0;
+		recv_mode = false;
+	} 
+	else if (recv_mode) {
+		if (received_byte >= THRUST_FULL_REVERSE && received_byte <= THRUST_FULL_FORWARD) {
+			recv_array[received_bytes_counter] = received_byte;
+			received_bytes_counter++;
+		}
 	}
 }
 
@@ -65,7 +76,7 @@ bool arming_check()
 		{
 			//Serial.println("ARMING");
 			arming_counter++;
-			if (arming_counter >= 1000)
+			if (arming_counter >= 100)
 			{
 				arm_thrusters();
 				is_armed = 1;
@@ -86,8 +97,8 @@ bool arming_check()
 	return spin_thrusters;
 }
 
-void set_thrusters()
+void set_thrusters(const uint8_t command_array[NUM_THRUSTERS])
 {
 	for (int i = 0; i < NUM_THRUSTERS; i++)
-		set_thrust(i, recv_array[i]);
+		set_thrust(i, command_array[i]);
 }

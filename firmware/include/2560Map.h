@@ -23,8 +23,8 @@
 #define THRUST_FULL_REVERSE 140 /* Value that gives max reverse thrust  */
 #define THRUST_IDLE 191			/* Value that gives idle thrust         */
 #define THRUST_FULL_FORWARD 242 /* Value that gives max forward thrust  */
-#define TRUST_MESSAGE_INIT 30   /* Value that declares the start of a thrust msg */
-#define TRUST_MESSAGE_END 40    /* Value that declares the end of a thrust msg */
+#define THRUST_MESSAGE_INIT 30   /* Value that declares the start of a thrust msg */
+#define THRUST_MESSAGE_END 40    /* Value that declares the end of a thrust msg */
 
 /* LEDS */
 #define NUM_LEDs 2 /* The ports that the LEDS belong to    */
