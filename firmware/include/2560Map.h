@@ -26,10 +26,6 @@ const uint8_t thruster_offset[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, 0, 0};
 #define THRUST_IDLE 191			/* Value that gives idle thrust         */
 #define THRUST_FULL_FORWARD 242 /* Value that gives max forward thrust  */
 
-/* Limits on 16-bits thrust-values */
-#define MIN_THRUST_16 1100 /* Min thrust the thrusters handles     */
-#define MAX_THRUST_16 1900 /* Max thrust the thrusters handles     */
-
 /* LEDS */
 #define NUM_LEDs 2 /* The ports that the LEDS belong to    */
 #define LED_PORT PORTF /* The ports that the LEDS belong to    */
