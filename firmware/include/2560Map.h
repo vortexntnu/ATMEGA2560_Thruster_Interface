@@ -7,7 +7,7 @@
 #define I2C_ADDR 0x8
 
 /* Number of thrusters */
-#define NUM_THRUSTERS 10
+#define NUM_THRUSTERS 8
 
 /* Counters. Write the thrust values to these registers */
 #define THR0 OCR3A /* Counter THR0                         */
