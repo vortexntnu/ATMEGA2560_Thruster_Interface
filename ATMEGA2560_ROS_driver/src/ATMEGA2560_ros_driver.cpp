@@ -65,7 +65,7 @@ void MCU_Interface::thruster_arm_cb(const std_msgs::String &msg) {
 
 void MCU_Interface::output_to_zero() {
     double neutral_pulse_width = thrust_to_microseconds(0);
-    std::vector<double> microseconds;
+    std::vector<int> microseconds;
 
     for(int i = 0; i < num_thrusters; i++) {
         microseconds.push_back(neutral_pulse_width);
