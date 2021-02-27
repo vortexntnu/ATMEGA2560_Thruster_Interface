@@ -30,20 +30,6 @@ MCU_Interface::MCU_Interface ():loop_rate(10){
         lookup_pulse_width = default_vec;    
     }
 
-    if (!nh.getParam("/propulsion/thrusters/offset", thruster_offset)) {
-        ROS_WARN("Could not get parameter '/propulsion/thrusters/offset', using default.");
-        thruster_offset = default_vec;
-    }
-
-    if (!nh.getParam("/propulsion/thrusters/map", thruster_mapping)) {
-        ROS_WARN("Could not get parameter '/propulsion/thrusters/map', using default.");
-        thruster_mapping = default_vec;
-    }
-
-    if (!nh.getParam("/propulsion/thrusters/direction", thruster_direction)) {
-        ROS_WARN("Could not get parameter '/propulsion/thrusters/direction', using default.");
-        thruster_direction = default_vec; 
-    }
     
     i2c_init(0x8);
 
@@ -60,7 +46,7 @@ void MCU_Interface::thruster_forces_cb(const vortex_msgs::ThrusterForces &msg) {
     std::vector<double> microseconds;
 
     for(int i = 0; i < num_thrusters; i++) {
-        microseconds.push_back(thrust_to_microseconds(thrust[i] + thruster_offset[i]));
+        microseconds.push_back(thrust_to_microseconds(thrust[i]);
     }
 
     transfer_to_mcu(microseconds);
