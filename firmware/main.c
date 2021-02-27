@@ -13,7 +13,7 @@
 #define ARM_UINT8 100
 
 volatile char data;
-volatile uint8_t recv_array[8];
+volatile uint8_t recv_array[NUM_THRUSTERS];
 
 uint8_t num_received_bytes = 0;
 uint16_t arming_counter = 0;
@@ -35,8 +35,7 @@ int main()
 	I2C_setCallbacks(I2C_received, I2C_requested);
 
 	// Main program loop
-	while (1)
-		;
+	while (1);
 }
 
 void I2C_received(uint8_t received_data)
@@ -46,7 +45,7 @@ void I2C_received(uint8_t received_data)
 
 	if (num_received_bytes == NUM_THRUSTERS)
 	{
-		if (arming_check)
+		if (arming_check())
 			set_thrusters();
 		num_received_bytes = 0;
 	}

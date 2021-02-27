@@ -51,42 +51,46 @@ void set_thrust(uint8_t thrust_idx, uint8_t thrust)
 	{
 		return;
 	}
-	uint8_t thrust_offset = thrust +  THRUSTER_OFFSET[thrust_idx];	
-	uint8_t thrust_clamped = clamp(thrust_offset, THRUST_FULL_REVERSE, THRUST_FULL_FORWARD);
 
+	if (thrust < THRUST_FULL_REVERSE || thrust > THRUST_FULL_FORWARD) {
+		return;
+	}
+
+	uint8_t thrust_offset = thrust +  THRUSTER_OFFSET[thrust_idx];	
+	
 	/* Switching between the correct thruster */
 	switch (thrust_idx)
 	{
 	case 0:
-		THR0 = thrust_clamped;
+		THR0 = thrust_offset;
 		break;
 
 	case 1:
-		THR1 = thrust_clamped;
+		THR1 = thrust_offset;
 		break;
 
 	case 2:
-		THR2 = thrust_clamped;
+		THR2 = thrust_offset;
 		break;
 
 	case 3:
-		THR3 = thrust_clamped;
+		THR3 = thrust_offset;
 		break;
 
 	case 4:
-		THR4 = thrust_clamped;
+		THR4 = thrust_offset;
 		break;
 
 	case 5:
-		THR5 = thrust_clamped;
+		THR5 = thrust_offset;
 		break;
 
 	case 6:
-		THR6 = thrust_clamped;
+		THR6 = thrust_offset;
 		break;
 
 	case 7:
-		THR7 = thrust_clamped;
+		THR7 = thrust_offset;
 		break;
 
 	default:
