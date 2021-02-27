@@ -50,8 +50,8 @@ void set_thrust(uint8_t thrust_idx, uint8_t thrust)
 	{
 		return;
 	}
-
-	uint8_t thrust_clamped = clamp(thrust, THRUST_FULL_REVERSE, THRUST_FULL_FORWARD);
+	uint8_t thrust_offset = thrust +  thruster_offset[thrust_idx];	
+	uint8_t thrust_clamped = clamp(thrust_offset, THRUST_FULL_REVERSE, THRUST_FULL_FORWARD);
 
 	/* Switching between the correct thruster */
 	switch (thrust_idx)
