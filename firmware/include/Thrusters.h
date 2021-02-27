@@ -7,8 +7,6 @@
 
 #include <stdint.h>
 
-extern const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS];
-
 /**
  * @brief This function initializes the pwm
  * 
