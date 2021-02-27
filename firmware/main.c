@@ -43,7 +43,9 @@ int main()
 void I2C_received(uint8_t received_byte)
 {
 	if (!is_armed) {
-		arming_check();
+		if (received_byte == ARMING_COMMAND) {
+			arm_thrusters();
+		}
 	} 
 	else if (received_byte == THRUST_MESSAGE_INIT) {
 		recv_mode = true;
@@ -65,36 +67,6 @@ void I2C_received(uint8_t received_byte)
 void I2C_requested()
 {
 	I2C_transmitByte(data);
-}
-
-bool arming_check()
-{
-	bool spin_thrusters = 0;
-	if (recv_array[0] == ARM_UINT8 && recv_array[1] == ARM_UINT8 && recv_array[2] == ARM_UINT8 && recv_array[3] == ARM_UINT8 && recv_array[4] == ARM_UINT8 && recv_array[5] == ARM_UINT8 && recv_array[6] == ARM_UINT8 && recv_array[7] == ARM_UINT8)
-	{
-		if (!is_armed)
-		{
-			//Serial.println("ARMING");
-			arming_counter++;
-			if (arming_counter >= 100)
-			{
-				arm_thrusters();
-				is_armed = 1;
-			}
-		}
-	}
-	else if (!is_armed)
-	{
-		arming_counter = 0;
-	}
-
-	else
-	{
-		arming_counter = 0;
-		spin_thrusters = 1;
-	}
-
-	return spin_thrusters;
 }
 
 void set_thrusters(const uint8_t command_array[NUM_THRUSTERS])

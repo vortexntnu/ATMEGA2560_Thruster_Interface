@@ -8,6 +8,7 @@
 
 /* Number of thrusters */
 #define NUM_THRUSTERS 8
+#define ARMING_COMMAND 69
 
 /* Counters. Write the thrust values to these registers */
 #define THR0 OCR3A /* Counter THR0                         */
