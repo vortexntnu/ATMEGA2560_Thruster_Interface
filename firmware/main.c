@@ -46,12 +46,7 @@ void I2C_received(uint8_t received_data)
 
 	if (num_received_bytes == NUM_THRUSTERS)
 	{
-		if (is_armed)
-		{
-			set_thrusters();
-		}
-		else
-			arming_check();
+		if (arming_check) set_thrusters;
 		num_received_bytes = 0;
 	}
 }
