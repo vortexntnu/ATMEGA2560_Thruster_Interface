@@ -55,9 +55,7 @@ void MCU_Interface::thruster_forces_cb(const vortex_msgs::ThrusterForces &msg) {
 void MCU_Interface::thruster_arm_cb(const std_msgs::String &msg) {
     if (msg.data == "arm me daddy") {
         ROS_WARN("ARMING THRUSTERS, WATCH YOUR FINGERS, TOES, AND ANY OTHER EXPOSED LIMBS");
-        for (int i = 0; i < 1001; i++) {
-            transfer_to_mcu(100);
-        }
+        transfer_to_mcu(69);
     }
 
 }
@@ -137,7 +135,7 @@ void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
         }
 
         else {
-            uint8_t tmp_int8 = 0.128 * pwm[i] - 1;
+            uint8_t tmp_int8 = 0.128 * pwm[i+1] - 1;
             num_str[i] = tmp_int8;
         }
 
