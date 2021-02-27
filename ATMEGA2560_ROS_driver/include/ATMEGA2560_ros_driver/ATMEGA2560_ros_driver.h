@@ -45,7 +45,7 @@ class MCU_Interface{
         void output_to_zero();
 
         void i2c_init(int MCU_addr);
-        void transfer_to_mcu(const std::vector<double> pwm);
+        void transfer_to_mcu(const std::vector<int> pwm);
         void transfer_to_mcu(u_int8_t a_byte);
 
 };
