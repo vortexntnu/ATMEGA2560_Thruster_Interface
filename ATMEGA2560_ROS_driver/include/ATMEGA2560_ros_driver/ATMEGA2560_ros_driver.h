@@ -31,9 +31,6 @@ class MCU_Interface{
         int num_thrusters;
         std::vector<double> lookup_thrust;
         std::vector<double> lookup_pulse_width;
-        std::vector<double> thruster_offset;
-        std::vector<double> thruster_mapping;
-        std::vector<double> thruster_direction;
 
         const int thrust_range_limit = 100;
 
