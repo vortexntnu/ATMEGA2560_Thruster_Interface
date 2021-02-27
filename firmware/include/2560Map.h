@@ -9,8 +9,6 @@
 /* Number of thrusters */
 #define NUM_THRUSTERS 8
 
-const uint8_t thruster_offset[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, 0, 0};
-
 /* Counters. Write the thrust values to these registers */
 #define THR0 OCR3A /* Counter THR0                         */
 #define THR1 OCR3B /* Counter THR1                         */

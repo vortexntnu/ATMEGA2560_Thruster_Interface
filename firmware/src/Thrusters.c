@@ -8,6 +8,7 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
+const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 void initialize_pwm()
 {
@@ -50,7 +51,7 @@ void set_thrust(uint8_t thrust_idx, uint8_t thrust)
 	{
 		return;
 	}
-	uint8_t thrust_offset = thrust +  thruster_offset[thrust_idx];	
+	uint8_t thrust_offset = thrust +  THRUSTER_OFFSET[thrust_idx];	
 	uint8_t thrust_clamped = clamp(thrust_offset, THRUST_FULL_REVERSE, THRUST_FULL_FORWARD);
 
 	/* Switching between the correct thruster */
