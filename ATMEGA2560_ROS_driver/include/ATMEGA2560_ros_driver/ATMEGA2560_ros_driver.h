@@ -52,6 +52,8 @@ class MCU_Interface{
         void i2c_init(int MCU_addr);
         void transfer_to_mcu(const std::vector<int> pwm);
         void transfer_to_mcu(u_int8_t a_byte);
+        void recv_from_mcu();
+
 
         /** Arming service */
         ros::ServiceServer arming_service;
