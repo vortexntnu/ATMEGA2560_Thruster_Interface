@@ -12,7 +12,7 @@
 MCU_Interface::MCU_Interface ():loop_rate(10){
     thruster_forces_sub = nh.subscribe("/thrust/thruster_forces", 10, &MCU_Interface::thruster_forces_cb, this);
     thruster_arm_sub = nh.subscribe("/thrust/arm", 10, &MCU_Interface::thruster_arm_cb, this);
-    arming_service = nh.advertiseService("arming_service", &MCU_Interface::thruster_arm_cb)
+    arming_service = nh.advertiseService("arming_service", &MCU_Interface::arming_service_cb, this);
 
     if (!nh.getParam("/propulsion/thrusters/num", num_thrusters)) {
         ROS_WARN("Could not get parameter '/propulsion/thrusters/num', using default.");
@@ -59,6 +59,12 @@ void MCU_Interface::thruster_arm_cb(const std_msgs::String &msg) {
         transfer_to_mcu(69);
     }
 
+}
+
+bool MCU_Interface::arming_service_cb(vortex_msgs::ThrusterArming::Request &req, vortex_msgs::ThrusterArming::Response &res){
+    transfer_to_mcu(69);
+    res.result = "Thrusters armed";
+    return true;
 }
 
 

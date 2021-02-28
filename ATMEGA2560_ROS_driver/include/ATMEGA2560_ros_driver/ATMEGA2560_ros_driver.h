@@ -4,6 +4,7 @@
 
 #include <vortex_msgs/Pwm.h>
 #include <vortex_msgs/ThrusterForces.h>
+#include <vortex_msgs/ThrusterArming.h>
 #include <std_msgs/String.h>
 
 #include <string>
@@ -49,6 +50,7 @@ class MCU_Interface{
         void transfer_to_mcu(u_int8_t a_byte);
 
         /** Arming service */
-        ros::ServiceServer arming_service;      
+        ros::ServiceServer arming_service;
+        bool arming_service_cb(vortex_msgs::ThrusterArming::Request &req, vortex_msgs::ThrusterArming::Response &res);
 
 };
