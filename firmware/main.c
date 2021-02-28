@@ -47,13 +47,14 @@ void I2C_received(uint8_t received_byte)
 		}
 	} 
 	else if (received_byte == THRUST_MESSAGE_INIT) {
+		// Reset recv_array before reading new thrust values
+		for (int i=0; i<NUM_THRUSTERS; i++) {
+			recv_array[i] = 0;
+		}
 		recv_mode = true;
 	}
 	else if (received_byte == THRUST_MESSAGE_END) {
 		set_thrusters(recv_array);
-		for (int i=0; i<NUM_THRUSTERS; i++) {
-			recv_array[i] = 0;
-		}
 		received_bytes_counter = 0;
 		recv_mode = false;
 	} 
