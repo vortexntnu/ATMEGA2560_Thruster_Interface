@@ -8,7 +8,9 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
-const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, -5, 0};
+// WARNING!!!!!!!!!!!!!! If you are to change these, you need to make sure that the arming sequence does not use offset values!!
+// Currently not implemented because we are lazy and don't to break working code.
+const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 void initialize_pwm()
 {
