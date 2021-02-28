@@ -12,6 +12,7 @@
 MCU_Interface::MCU_Interface ():loop_rate(10){
     thruster_forces_sub = nh.subscribe("/thrust/thruster_forces", 10, &MCU_Interface::thruster_forces_cb, this);
     thruster_arm_sub = nh.subscribe("/thrust/arm", 10, &MCU_Interface::thruster_arm_cb, this);
+    arming_service = nh.advertiseService("arming_service", &MCU_Interface::thruster_arm_cb)
 
     if (!nh.getParam("/propulsion/thrusters/num", num_thrusters)) {
         ROS_WARN("Could not get parameter '/propulsion/thrusters/num', using default.");

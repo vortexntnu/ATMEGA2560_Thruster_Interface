@@ -48,4 +48,7 @@ class MCU_Interface{
         void transfer_to_mcu(const std::vector<int> pwm);
         void transfer_to_mcu(u_int8_t a_byte);
 
+        /** Arming service */
+        ros::ServiceServer arming_service;      
+
 };
