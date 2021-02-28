@@ -69,7 +69,9 @@ void I2C_received(uint8_t received_byte)
 
 void I2C_requested()
 {
-	I2C_transmitByte(data);
+	for (int i = 0; i < NUM_THRUSTERS; i++) {
+		I2C_transmitByte(recv_array[i]);
+	}
 }
 
 void set_thrusters(const uint8_t command_array[NUM_THRUSTERS])

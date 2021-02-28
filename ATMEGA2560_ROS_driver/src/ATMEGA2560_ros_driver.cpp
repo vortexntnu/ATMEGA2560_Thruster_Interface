@@ -193,6 +193,19 @@ void MCU_Interface::transfer_to_mcu(u_int8_t a_byte) {
     }
 }
 
+void MCU_Interface::recv_from_mcu() {
+    // To compile and run all files:
+    // cc -c ./i2c_test.c && cc ./i2c.o ./i2c_test.o -o main && ./main
+
+    char recv_array[8];
+
+    if (i2c_ioctl_read(&device, 0x0, recv_array, strlen(recv_array)) != strlen(recv_array))
+    {
+        /* Error process */
+    }
+    ROS_WARN("Getting callback from slave. Recv byte array: %d %d %d %d %d %d %d %d \n", recv_array[0], recv_array[1], recv_array[2], recv_array[3], recv_array[4], recv_array[5], recv_array[6], recv_array[7]);
+}
+
 void MCU_Interface::execute(){
     while (ros::ok()){
         ros::spinOnce();
