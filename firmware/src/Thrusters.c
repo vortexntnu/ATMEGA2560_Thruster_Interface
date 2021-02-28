@@ -8,7 +8,7 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
-const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, 0, 0};
+const uint8_t THRUSTER_OFFSET[NUM_THRUSTERS] = {0, 0, 0, 0, 0, 0, -5, 0};
 
 void initialize_pwm()
 {
@@ -108,7 +108,7 @@ void prearm_thrusters()
 	/* Turning LED D3 high and LED D2 low */
 	set_led_all(LED_ON);
 
-	/* Init thrusters to idle */
+	/* Init thrusters to a valid thrust signal */
 	set_thrust_all(200);
 
 	/* Giving the thrusters 3 seconds to init */
@@ -122,10 +122,14 @@ void arm_thrusters()
 	set_led(LED_D3, LED_OFF);
 
 	/* Init thrusters to idle */
-	set_thrust_all(THRUST_IDLE);
+	for (uint8_t i = 0; i < NUM_THRUSTERS; i++) {
+		set_thrust(i, THRUST_IDLE);
+		_delay_ms(1000);
+	}
 
-	/* Giving the thrusters 2 seconds to init */
-	_delay_ms(2000);
+
+	/* Waiting for another second */
+	_delay_ms(1000);
 
 	/* Turning LED D2 high and LED D3 low */
 	set_led(LED_D2, !LED_D2_STATE);
