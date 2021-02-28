@@ -10,8 +10,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define ARM_UINT8 100
-
 volatile char data;
 volatile uint8_t recv_array[NUM_THRUSTERS];
 

@@ -81,6 +81,7 @@ bool MCU_Interface::thrusters_write_service_cb(vortex_msgs::ThrustersWrite::Requ
     }
 
     transfer_to_mcu(microseconds);
+    recv_from_mcu();
 
     return true;
 
@@ -203,7 +204,7 @@ void MCU_Interface::recv_from_mcu() {
     {
         /* Error process */
     }
-    ROS_WARN("Getting callback from slave. Recv byte array: %d %d %d %d %d %d %d %d \n", recv_array[0], recv_array[1], recv_array[2], recv_array[3], recv_array[4], recv_array[5], recv_array[6], recv_array[7]);
+    ROS_INFO("Getting callback from slave. Recv byte array: %d %d %d %d %d %d %d %d \n", recv_array[0], recv_array[1], recv_array[2], recv_array[3], recv_array[4], recv_array[5], recv_array[6], recv_array[7]);
 }
 
 void MCU_Interface::execute(){
