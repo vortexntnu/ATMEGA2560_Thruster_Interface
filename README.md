@@ -9,6 +9,12 @@ It is not part of the [Vortex-AUV](https://github.com/vortexntnu/Vortex-AUV) rep
   
 Note! To arm the thrusters, execute the command
 ```
+rosservice call arming_service
+```
+
+Alternatively, you can execute
+
+```
 rostopic pub /thrust/arm std_msgs/String "arm me daddy"
 ```
 and click CTRL+C once confirmation for arming has been given in the ROS console on the Xavier
