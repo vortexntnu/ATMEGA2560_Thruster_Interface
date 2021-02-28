@@ -16,7 +16,6 @@ volatile uint8_t recv_array[NUM_THRUSTERS];
 uint8_t received_bytes_counter = 0;
 uint16_t arming_counter = 0;
 
-const uint8_t arming_array[NUM_THRUSTERS] = {ARM_UINT8};
 bool is_armed = 0;
 
 bool recv_mode = false;
