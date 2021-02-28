@@ -63,6 +63,7 @@ void MCU_Interface::thruster_arm_cb(const std_msgs::String &msg) {
 }
 
 bool MCU_Interface::arming_service_cb(vortex_msgs::ThrusterArming::Request &req, vortex_msgs::ThrusterArming::Response &res){
+    ROS_WARN("ARMING THRUSTERS, WATCH YOUR FINGERS, TOES, AND ANY OTHER EXPOSED LIMBS");
     transfer_to_mcu(69);
     res.result = "Thrusters armed";
     return true;
