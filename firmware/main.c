@@ -45,6 +45,7 @@ void I2C_received(uint8_t received_byte)
 	if (!is_armed) {
 		if (received_byte == ARMING_COMMAND) {
 			arm_thrusters();
+			is_armed = 1;
 		}
 	} 
 	else if (received_byte == THRUST_MESSAGE_INIT) {

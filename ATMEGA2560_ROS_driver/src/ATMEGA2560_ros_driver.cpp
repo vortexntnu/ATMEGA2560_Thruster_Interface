@@ -15,7 +15,7 @@ MCU_Interface::MCU_Interface ():loop_rate(10){
 
     if (!nh.getParam("/propulsion/thrusters/num", num_thrusters)) {
         ROS_WARN("Could not get parameter '/propulsion/thrusters/num', using default.");
-        num_thrusters = 8 + 2;
+        num_thrusters = 8;
     }
 
     std::vector<double> default_vec(num_thrusters, 0.0);
@@ -123,7 +123,7 @@ void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
 // cc -c ./i2c_test.c && cc ./i2c.o ./i2c_test.o -o main && ./main
 
     char num_str[num_thrusters];
-    for (int i = 0; i < num_thrusters; i++) {
+    for (int i = 0; i < num_thrusters+2; i++) { // +2 to account for the start and stop byte 
         if (i == 0) {
             num_str[i] = 30;
             continue;
@@ -146,25 +146,12 @@ void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
     {
         /* Error process */
     }
-    // for (u_int16_t i = 9000; i < 100000; i++) {
-    //     u_int16_t num = rand() % 65535;
-    //     char num_str[5];
-    //     sprintf(num_str, "%d", i);
-
-    // 	printf("%s\n", num_str);
-
-    //     /* Write data to i2c */
-    //     if (i2c_ioctl_write(&MCU_Interface::device, 0x0, num_str, strlen(num_str)) != strlen(num_str)) {
-    //         /* Error process */
-    //     }
-    // }
-    //i2c_close(MCU_Interface::device.bus);
 }
 
 void MCU_Interface::transfer_to_mcu(u_int8_t a_byte) {
     // To compile and run all files:
     // cc -c ./i2c_test.c && cc ./i2c.o ./i2c_test.o -o main && ./main
-    const I2CDevice dev_1 = MCU_Interface::device;
+    //const I2CDevice dev_1 = MCU_Interface::device;
     
     char num_str[num_thrusters];
     for (int i = 0; i < num_thrusters; i++)
@@ -172,24 +159,10 @@ void MCU_Interface::transfer_to_mcu(u_int8_t a_byte) {
         num_str[i] = a_byte;
     }
 
-    if (i2c_ioctl_write(&dev_1, 0x0, num_str, strlen(num_str)) != strlen(num_str))
+    if (i2c_ioctl_write(&device, 0x0, num_str, strlen(num_str)) != strlen(num_str))
     {
         /* Error process */
     }
-
-    // for (u_int16_t i = 9000; i < 100000; i++) {
-    //     u_int16_t num = rand() % 65535;
-    //     char num_str[5];
-    //     sprintf(num_str, "%d", i);
-
-    // 	printf("%s\n", num_str);
-
-    //     /* Write data to i2c */
-    //     if (i2c_ioctl_write(&MCU_Interface::device, 0x0, num_str, strlen(num_str)) != strlen(num_str)) {
-    //         /* Error process */
-    //     }
-    // }
-    //i2c_close(MCU_Interface::device.bus);
 }
 
 void MCU_Interface::execute(){
