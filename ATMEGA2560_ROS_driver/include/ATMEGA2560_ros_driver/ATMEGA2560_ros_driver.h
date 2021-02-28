@@ -5,6 +5,7 @@
 #include <vortex_msgs/Pwm.h>
 #include <vortex_msgs/ThrusterForces.h>
 #include <vortex_msgs/ThrusterArming.h>
+#include <vortex_msgs/ThrustersWrite.h>
 #include <std_msgs/String.h>
 
 #include <string>
@@ -13,6 +14,9 @@
 
 #include "ATMEGA2560_ros_driver/i2c.h"
 #include "ATMEGA2560_ros_driver/interp.h"
+
+#define MESSAGE_START 30
+#define MESSAGE_END 40
 
 class MCU_Interface{
     public:
@@ -52,5 +56,9 @@ class MCU_Interface{
         /** Arming service */
         ros::ServiceServer arming_service;
         bool arming_service_cb(vortex_msgs::ThrusterArming::Request &req, vortex_msgs::ThrusterArming::Response &res);
+
+        /** Thruster write service */
+        ros::ServiceServer thrusters_write_service;
+        bool thrusters_write_service_cb(vortex_msgs::ThrustersWrite::Request &req, vortex_msgs::ThrustersWrite::Response &res);
 
 };
