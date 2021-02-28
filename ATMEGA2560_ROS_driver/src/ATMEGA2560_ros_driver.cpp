@@ -122,14 +122,14 @@ void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
 // To compile and run all files:
 // cc -c ./i2c_test.c && cc ./i2c.o ./i2c_test.o -o main && ./main
 
-    char num_str[num_thrusters];
+    char num_str[num_thrusters+2];
     for (int i = 0; i < num_thrusters+2; i++) { // +2 to account for the start and stop byte 
         if (i == 0) {
             num_str[i] = 30;
             continue;
         }
 
-        else if (i == (num_thrusters - 1)) {
+        else if (i == (num_thrusters + 1)) {
             num_str[i] = 40;
             continue;
         }
@@ -141,6 +141,8 @@ void MCU_Interface::transfer_to_mcu(const std::vector<int> pwm) {
 
 
     }
+
+    ROS_INFO("Array being transferred to MCU: [%s]\n", num_str);
 
     if (i2c_ioctl_write(&device, 0x0, num_str, strlen(num_str)) != strlen(num_str))
     {
